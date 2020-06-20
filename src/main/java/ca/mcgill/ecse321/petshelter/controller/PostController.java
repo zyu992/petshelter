@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.petshelter.controller;
 
+import ca.mcgill.ecse321.petshelter.entity.Application;
 import ca.mcgill.ecse321.petshelter.entity.Pet;
 import ca.mcgill.ecse321.petshelter.entity.Post;
 import ca.mcgill.ecse321.petshelter.entity.User;
@@ -21,10 +22,7 @@ public class PostController {
 
     @Autowired
     PostService postService;
-    @Autowired
-    UserService userService;
-    @Autowired
-    PetService petService;
+
 
     @GetMapping("/")
     public List<Post> getAllPosts(){
@@ -33,10 +31,12 @@ public class PostController {
 
     @PostMapping("/create")
     public Post createPost(@Param("user") Integer userId, @Param("pet") Integer petId){
-        User user = userService.findById(userId);
-        Pet pet = petService.findById(petId);
-        return postService.createPost(user, pet);
+        return postService.createPost(userId, petId);
     }
 
+//    @GetMapping("/")
+//    public Post findById(@Param("id") Integer id){
+//        return postService.findById(id);
+//    }
 
 }

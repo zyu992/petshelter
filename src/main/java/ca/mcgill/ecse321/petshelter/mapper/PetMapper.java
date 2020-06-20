@@ -11,5 +11,5 @@ public interface PetMapper {
 
     Pet findById(Integer id);
 
-    Integer insert(Pet pet);
+    Pet insert(Pet pet);
 }
