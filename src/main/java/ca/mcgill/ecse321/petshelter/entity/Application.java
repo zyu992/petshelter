@@ -8,6 +8,7 @@ public class Application {
     private User applicant;
     private String message;
     private Boolean isAccepted;
+    private Boolean isClosed;
     private Date date;
 
     public Integer getApplicationId() {
@@ -56,5 +57,13 @@ public class Application {
 
     public void setAccepted(Boolean accepted) {
         isAccepted = accepted;
+    }
+
+    public Boolean getClosed() {
+        return isClosed;
+    }
+
+    public void setClosed(Boolean closed) {
+        isClosed = closed;
     }
 }

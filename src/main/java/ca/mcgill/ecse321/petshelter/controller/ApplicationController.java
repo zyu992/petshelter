@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/application")
+@RequestMapping("/api/applications")
 public class ApplicationController {
 
     @Autowired
@@ -31,4 +31,5 @@ public class ApplicationController {
     public Application findById(@PathVariable("id") Integer id){
         return applicationService.findById(id);
     }
+
 }

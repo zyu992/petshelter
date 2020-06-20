@@ -40,4 +40,10 @@ public class UserService {
             throw new EntityNotFoundException("User requested not found");
         } else return user;
     }
+
+    @Transactional
+    public User update(User user){
+        userMapper.update(user);
+        return findById(user.getUserId());
+    }
 }

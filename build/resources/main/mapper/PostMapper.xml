@@ -11,6 +11,9 @@
         <association property="postedBy" javaType="ca.mcgill.ecse321.petshelter.entity.User">
             <id property="userId" column="user_id"/>
         </association>
+        <association property="adopter" javaType="ca.mcgill.ecse321.petshelter.entity.User">
+            <id property="userId" column="post_adopter_id"/>
+        </association>
         <association property="pet" javaType="ca.mcgill.ecse321.petshelter.entity.Pet">
             <id property="petId" column="pet_id"/>
         </association>
@@ -42,6 +45,11 @@
         values (#{postedById}, #{postedPetId}, #{date})
     </insert>
 
-
+    <update id="update" parameterType="ca.mcgill.ecse321.petshelter.entity.Post">
+        <bind name="adopterId" value="adopter.getUserId()"/>
+        update posts
+        set post_is_closed = #{isClosed}, post_adopter_id = #{adopterId}
+        where post_id = #{postId}
+    </update>
 
 </mapper>

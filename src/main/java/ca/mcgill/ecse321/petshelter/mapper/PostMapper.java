@@ -15,7 +15,7 @@ public interface PostMapper {
 
     Post findById(Integer id);
 
-    List<Post> findByUser(User user);
-
     int insert(Post post);
+
+    int update(Post post);
 }

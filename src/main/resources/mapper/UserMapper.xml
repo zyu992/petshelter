@@ -39,4 +39,10 @@
             parameterType="ca.mcgill.ecse321.petshelter.entity.User">
         insert into users (userName, password, email) values (#{username}, #{password}, #{email})
     </insert>
+
+    <update id="update" parameterType="ca.mcgill.ecse321.petshelter.entity.User">
+        update users
+        set username = #{username}, password = #{password}, email = #{email}
+        where user_id = #{userId}
+    </update>
 </mapper>

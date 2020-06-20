@@ -48,4 +48,29 @@ public class ApplicationService {
         applicationMapper.insert(application);
         return application;
     }
+
+    @Transactional
+    public Application findByUserAndPost(Integer userId, Integer postId){
+        return applicationMapper.findByUserAndPost(userId, postId);
+    }
+
+    @Transactional
+    public Application updateApplication(Application application){
+        applicationMapper.update(application);
+        return applicationMapper.findById(application.getApplicationId());
+    }
+
+    @Transactional
+    public Application acceptApplication(Integer id){
+        Application application = applicationMapper.findById(id);
+        application.setAccepted(true);
+        return updateApplication(application);
+    }
+
+    @Transactional
+    public Application closeApplication(Integer id){
+        Application application = applicationMapper.findById(id);
+        application.setClosed(true);
+        return updateApplication(application);
+    }
 }

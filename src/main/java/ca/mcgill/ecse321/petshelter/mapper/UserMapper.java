@@ -15,4 +15,6 @@ public interface UserMapper {
     List<User> findByUsername(String username);
 
     int insert(User user);
+
+    int update(User user);
 }

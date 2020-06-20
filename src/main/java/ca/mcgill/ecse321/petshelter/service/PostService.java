@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.petshelter.service;
 
+import ca.mcgill.ecse321.petshelter.entity.Application;
 import ca.mcgill.ecse321.petshelter.entity.Pet;
 import ca.mcgill.ecse321.petshelter.entity.Post;
 import ca.mcgill.ecse321.petshelter.entity.User;
@@ -23,13 +24,13 @@ public class PostService {
     @Autowired
     PetService petService;
 
+    @Autowired
+    ApplicationService applicationService;
+
     @Transactional
     public Post createPost(Integer userId, Integer petId){
         if (userId == null || petId == null || userId <= 0 || petId <= 0){
             throw new IllegalArgumentException("Found Illegal Argument. ");
-        }
-        if (userService.findById(userId) == null || petService.findById(petId) == null){
-            throw new EntityNotFoundException();
         }
         Post post = new Post();
         post.setPostedBy(userService.findById(userId));
@@ -47,5 +48,24 @@ public class PostService {
     @Transactional
     public Post findById(Integer id) {
         return postMapper.findById(id);
+    }
+
+    @Transactional
+    public Post confirmAdopter(Integer postId, Integer applicationId){
+        if (postId == null || applicationId == null){
+            throw new IllegalArgumentException();
+        }
+        Post post = findById(postId);
+        if (post.getAdopter() != null){
+            throw new IllegalArgumentException("An adopter has been assigned to this post. ");
+        }
+        post.setAdopter(applicationService.findById(applicationId).getApplicant());
+        post.setClosed(true);
+        applicationService.acceptApplication(applicationId);
+        for (Application app : post.getApplications()){
+            applicationService.closeApplication(app.getApplicationId());
+        }
+        postMapper.update(post);
+        return postMapper.findById(postId);
     }
 }
