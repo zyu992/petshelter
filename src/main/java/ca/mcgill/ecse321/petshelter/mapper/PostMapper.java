@@ -17,5 +17,5 @@ public interface PostMapper {
 
     List<Post> findByUser(User user);
 
-    Post insert(Post post);
+    int insert(Post post);
 }

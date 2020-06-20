@@ -20,5 +20,5 @@ public interface ApplicationMapper {
 
     List<Application> findByPost(Post post);
 
-    Application insert(Application application);
+    int insert(Application application);
 }
