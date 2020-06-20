@@ -11,7 +11,7 @@ import java.util.List;
 import com.google.gson.Gson;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/users")
 public class UserController {
 
     @Autowired
@@ -28,6 +28,13 @@ public class UserController {
         Gson gson = new Gson();
         String json = gson.toJson(userService.findAllUsers()); 
         return gson.fromJson(json, new TypeToken<List<User>>(){}.getType());
+    }
+
+    @GetMapping("/{id}")
+    public User findById(@PathVariable("id") Integer id){
+        Gson gson = new Gson();
+        String json = gson.toJson(userService.findById(id));
+        return gson.fromJson(json, new TypeToken<User>(){}.getType());
     }
 
 }

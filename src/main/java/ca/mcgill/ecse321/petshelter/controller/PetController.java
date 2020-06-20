@@ -10,13 +10,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/pet")
 public class PetController {
+
     @Autowired
     PetService petService;
-
-    @GetMapping("/")
-    public List<Pet> getAllPets(){
-        return petService.findAllPets();
-    }
 
     @PostMapping("/create")
     public Pet createPet(@RequestParam("name") String name,
@@ -25,8 +21,13 @@ public class PetController {
         return petService.createPet(name, age, species);
     }
 
-//    @GetMapping("/get")
-//    public Pet findById(@RequestParam("id") Integer id){
-//        return petService.findById(id);
-//    }
+    @GetMapping("/")
+    public List<Pet> getAllPets(){
+        return petService.findAllPets();
+    }
+
+    @GetMapping("/{id}}")
+    public Pet findById(@PathVariable("id") Integer id){
+        return petService.findById(id);
+    }
 }

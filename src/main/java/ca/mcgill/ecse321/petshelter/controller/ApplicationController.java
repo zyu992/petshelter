@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/application")
 public class ApplicationController {
+
     @Autowired
     ApplicationService applicationService;
 
@@ -26,8 +27,8 @@ public class ApplicationController {
         return applicationService.findAllApplications();
     }
 
-//    @GetMapping("/")
-//    public Application findById(@RequestParam("id") Integer id){
-//        return applicationService.findById(id);
-//    }
+    @GetMapping("/{id}")
+    public Application findById(@PathVariable("id") Integer id){
+        return applicationService.findById(id);
+    }
 }
