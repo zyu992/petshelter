@@ -1,6 +1,7 @@
 package ca.mcgill.ecse321.petshelter.entity;
 
 import java.util.Date;
+import java.util.List;
 
 public class Post {
     private Integer postId;
@@ -9,6 +10,7 @@ public class Post {
     private Pet pet;
     private Boolean isClosed;
     private User adopter;
+    private List<Application> applications;
 
     public Integer getPostId() {
         return postId;
@@ -56,5 +58,13 @@ public class Post {
 
     public void setAdopter(User adopter) {
         this.adopter = adopter;
+    }
+
+    public List<Application> getApplications() {
+        return applications;
+    }
+
+    public void setApplications(List<Application> applications) {
+        this.applications = applications;
     }
 }

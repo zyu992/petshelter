@@ -20,7 +20,7 @@ public class UserController {
         return userService.createUser(username, password, email);
     }
 
-    @RequestMapping("/")
+    @GetMapping("/")
     public List<User> getAllUsers(){
         return userService.findAllUsers();
     }

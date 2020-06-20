@@ -4,7 +4,7 @@ public class Pet {
     private Integer petId;
     private String petName;
     private Integer age;
-    private Species species;
+    private String species;
 
     public Integer getPetId() {
         return petId;
@@ -30,11 +30,11 @@ public class Pet {
         this.age = age;
     }
 
-    public Species getSpecies() {
+    public String getSpecies() {
         return species;
     }
 
-    public void setSpecies(Species species) {
+    public void setSpecies(String species) {
         this.species = species;
     }
 }

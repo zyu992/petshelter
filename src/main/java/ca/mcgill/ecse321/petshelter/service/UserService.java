@@ -1,7 +1,7 @@
 package ca.mcgill.ecse321.petshelter.service;
 
 import ca.mcgill.ecse321.petshelter.entity.User;
-import ca.mcgill.ecse321.petshelter.mapper.IUserMapper;
+import ca.mcgill.ecse321.petshelter.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class UserService {
     @Autowired
-    IUserMapper userMapper;
+    UserMapper userMapper;
 
     @Transactional
     public User createUser(String username, String password, String email){
