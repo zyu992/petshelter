@@ -2,7 +2,6 @@ package ca.mcgill.ecse321.petshelter.controller;
 
 import ca.mcgill.ecse321.petshelter.entity.User;
 import ca.mcgill.ecse321.petshelter.service.UserService;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
