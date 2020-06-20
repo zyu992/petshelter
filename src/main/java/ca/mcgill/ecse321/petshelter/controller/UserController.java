@@ -2,10 +2,14 @@ package ca.mcgill.ecse321.petshelter.controller;
 
 import ca.mcgill.ecse321.petshelter.entity.User;
 import ca.mcgill.ecse321.petshelter.service.UserService;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import com.google.gson.Gson;
 
 @RestController
 @RequestMapping("/user")
@@ -22,7 +26,9 @@ public class UserController {
 
     @GetMapping("/")
     public List<User> getAllUsers(){
-        return userService.findAllUsers();
+        Gson gson = new Gson();
+        String json = gson.toJson(userService.findAllUsers()); 
+        return gson.fromJson(json, new TypeToken<List<User>>(){}.getType());
     }
 
 }

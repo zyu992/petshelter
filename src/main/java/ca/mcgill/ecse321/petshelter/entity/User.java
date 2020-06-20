@@ -2,10 +2,12 @@ package ca.mcgill.ecse321.petshelter.entity;
 
 import java.util.List;
 
+import com.google.gson.annotations.Expose;
+
 public class User {
     private Integer userId;
     private String username;
-    private String password;
+    private transient String password;
     private String email;
     private List<Application> applications;
     private List<Post> posts;
@@ -57,4 +59,5 @@ public class User {
     public void setPosts(List<Post> posts) {
         this.posts = posts;
     }
+
 }
