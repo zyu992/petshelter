@@ -1,5 +1,7 @@
 package ca.mcgill.ecse321.petshelter.controller;
 
+import ca.mcgill.ecse321.petshelter.entity.Application;
+import ca.mcgill.ecse321.petshelter.entity.Pet;
 import ca.mcgill.ecse321.petshelter.entity.Post;
 import ca.mcgill.ecse321.petshelter.service.PostService;
 import org.apache.ibatis.annotations.Param;
@@ -50,5 +52,15 @@ public class PostController {
     @PutMapping("/assign")
     public Post assignAdopter(@RequestParam("post") Integer postId, @RequestParam("application") Integer applicationId){
         return postService.confirmAdopter(postId, applicationId);
+    }
+
+    @GetMapping("/user/{userId}")
+    public List<Post> findByUser(@PathVariable("userId") Integer id){
+        return postService.findByUser(id);
+    }
+
+    @GetMapping("/application/{applicationId}")
+    public Post findByApplication(@PathVariable("applicationId") Integer id){
+        return postService.findByApplication(id);
     }
 }

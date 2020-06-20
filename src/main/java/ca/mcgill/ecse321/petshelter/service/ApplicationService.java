@@ -1,12 +1,15 @@
 package ca.mcgill.ecse321.petshelter.service;
 
 import ca.mcgill.ecse321.petshelter.entity.Application;
+import ca.mcgill.ecse321.petshelter.entity.Post;
+import ca.mcgill.ecse321.petshelter.entity.User;
 import ca.mcgill.ecse321.petshelter.mapper.ApplicationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -72,5 +75,25 @@ public class ApplicationService {
         Application application = applicationMapper.findById(id);
         application.setClosed(true);
         return updateApplication(application);
+    }
+
+    @Transactional
+    public List<Application> findByUser(Integer userId){
+        User user = userService.findById(userId);
+        List<Application> applications = new ArrayList<>();
+        for (Application application : user.getApplications()){
+            applications.add(findById(application.getApplicationId()));
+        }
+        return applications;
+    }
+
+    @Transactional
+    public List<Application> findByPost(Integer postId){
+        List<Application> applications = new ArrayList<>();
+        Post post = postService.findById(postId);
+        for (Application application : post.getApplications()){
+            applications.add(findById(application.getApplicationId()));
+        }
+        return applications;
     }
 }

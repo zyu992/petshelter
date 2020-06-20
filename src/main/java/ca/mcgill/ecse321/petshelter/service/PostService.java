@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -67,5 +68,23 @@ public class PostService {
         }
         postMapper.update(post);
         return postMapper.findById(postId);
+    }
+
+    @Transactional
+    public List<Post> findByUser(Integer userId){
+        User user = userService.findById(userId);
+        List<Post> posts = new ArrayList<>();
+        for (Post post : user.getPosts()){
+            posts.add(findById(post.getPostId()));
+        }
+        return posts;
+    }
+
+
+
+    @Transactional
+    public Post findByApplication(Integer applicationId){
+        Application application = applicationService.findById(applicationId);
+        return findById(application.getPost().getPostId());
     }
 }

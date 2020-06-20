@@ -56,7 +56,7 @@ public class UserController {
     /**
      * Update a User object.
      * @param user a User object with updated fields
-     * @return
+     * @return the User object after update
      */
     @PutMapping("/update")
     public User updateUser(@RequestBody User user){

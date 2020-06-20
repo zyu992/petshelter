@@ -32,4 +32,13 @@ public class ApplicationController {
         return applicationService.findById(id);
     }
 
+    @GetMapping("/user/{userId}")
+    public List<Application> findByUser(@PathVariable("userId") Integer id){
+        return applicationService.findByUser(id);
+    }
+
+    @GetMapping("/post/{postId}")
+    public List<Application> findByPost(@PathVariable("postId") Integer id){
+        return applicationService.findByPost(id);
+    }
 }

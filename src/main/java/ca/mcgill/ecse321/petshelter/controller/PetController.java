@@ -30,4 +30,9 @@ public class PetController {
     public Pet findById(@PathVariable("id") Integer id){
         return petService.findById(id);
     }
+
+    @GetMapping("/post/{postId}")
+    public Pet getPet(@PathVariable("postId") Integer id) {
+        return petService.findByPost(id);
+    }
 }
