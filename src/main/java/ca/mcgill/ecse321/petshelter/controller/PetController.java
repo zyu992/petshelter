@@ -2,12 +2,8 @@ package ca.mcgill.ecse321.petshelter.controller;
 
 import ca.mcgill.ecse321.petshelter.entity.Pet;
 import ca.mcgill.ecse321.petshelter.service.PetService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,14 +19,14 @@ public class PetController {
     }
 
     @PostMapping("/create")
-    public Pet createPet(@Param("name") String name,
-                         @Param("age") Integer age,
-                         @Param("species") String species){
+    public Pet createPet(@RequestParam("name") String name,
+                         @RequestParam("age") Integer age,
+                         @RequestParam("species") String species){
         return petService.createPet(name, age, species);
     }
 
 //    @GetMapping("/get")
-//    public Pet findById(@Param("id") Integer id){
+//    public Pet findById(@RequestParam("id") Integer id){
 //        return petService.findById(id);
 //    }
 }

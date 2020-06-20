@@ -3,12 +3,8 @@ package ca.mcgill.ecse321.petshelter.controller;
 import ca.mcgill.ecse321.petshelter.entity.Application;
 import ca.mcgill.ecse321.petshelter.mapper.ApplicationMapper;
 import ca.mcgill.ecse321.petshelter.service.ApplicationService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,9 +15,9 @@ public class ApplicationController {
     ApplicationService applicationService;
 
     @PostMapping("/create")
-    public Application createApplication(@Param("applicant") Integer applicantId,
-                                         @Param("post") Integer postId,
-                                         @Param("message") String message){
+    public Application createApplication(@RequestParam("applicant") Integer applicantId,
+                                         @RequestParam("post") Integer postId,
+                                         @RequestParam("message") String message){
         return applicationService.createApplication(applicantId, postId, message);
     }
 
@@ -31,7 +27,7 @@ public class ApplicationController {
     }
 
 //    @GetMapping("/")
-//    public Application findById(@Param("id") Integer id){
+//    public Application findById(@RequestParam("id") Integer id){
 //        return applicationService.findById(id);
 //    }
 }
