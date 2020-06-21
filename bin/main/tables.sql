@@ -46,7 +46,7 @@ CREATE TABLE messages
     message_id INT(16) ZEROFILL AUTO_INCREMENT PRIMARY KEY,
     user_id    INT(16)      NOT NULL,
     content    VARCHAR(200) NOT NULL,
-    time       TIME         NOT NULL,
+    time       TIMESTAMP         NOT NULL,
     room_id    INT(16)      NOT NULL
 );
 
@@ -58,4 +58,4 @@ CREATE TABLE payment_history
     time       timestamp NOT NULL,
     amount     INT(16) ZEROFILL NOT NULL,
     payer_id   INT(16) ZEROFILL NOT NULL
-);
+);git
