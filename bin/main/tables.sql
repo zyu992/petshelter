@@ -50,5 +50,12 @@ CREATE TABLE messages
     room_id    INT(16)      NOT NULL
 );
 
-
-
+drop table if exists payment_history;
+CREATE TABLE payment_history
+(
+    payment_id INT(16) ZEROFILL AUTO_INCREMENT PRIMARY KEY,
+    creditcard INT(16) ZEROFILL NOT NULL,
+    time       timestamp NOT NULL,
+    amount     INT(16) ZEROFILL NOT NULL,
+    payer_id   INT(16) ZEROFILL NOT NULL
+);
