@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.petshelter.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,10 +20,12 @@ public class Message {
 
     @ManyToOne(optional = false)
     @JoinColumn
+    @JsonIgnoreProperties("sentMessages")
     private User sender;
 
     @ManyToOne(optional = false)
     @JoinColumn
+    @JsonIgnoreProperties("receivedMessages")
     private User receiver;
 
     @Column(nullable = false)

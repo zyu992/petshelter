@@ -1,14 +1,15 @@
 package ca.mcgill.ecse321.petshelter.service;
 
+import ca.mcgill.ecse321.petshelter.dao.ApplicationDao;
 import ca.mcgill.ecse321.petshelter.entity.Application;
 import ca.mcgill.ecse321.petshelter.entity.Post;
 import ca.mcgill.ecse321.petshelter.entity.User;
-import ca.mcgill.ecse321.petshelter.dao.ApplicationDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -34,6 +35,9 @@ public class ApplicationService {
 
     @Transactional
     public void createApplication(Application application){
+        application.setIsClosed(false);
+        application.setIsAccepted(false);
+        application.setDate(new Date());
         applicationDao.save(application);
     }
 

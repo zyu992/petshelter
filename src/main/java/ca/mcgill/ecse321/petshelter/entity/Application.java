@@ -1,5 +1,6 @@
 package ca.mcgill.ecse321.petshelter.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -18,10 +19,12 @@ public class Application {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "applied_post_id")
+    @JsonIgnoreProperties("applications")
     private Post appliedPost;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "applicant_id")
+    @JsonIgnoreProperties("applications")
     private User applicant;
 
     private String message;

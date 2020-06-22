@@ -4,8 +4,6 @@ import ca.mcgill.ecse321.petshelter.entity.User;
 import ca.mcgill.ecse321.petshelter.service.UserService;
 import ca.mcgill.ecse321.petshelter.utils.Result;
 import ca.mcgill.ecse321.petshelter.utils.ResultCode;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,16 +24,12 @@ public class UserController {
 
     @GetMapping("/")
     public List<User> getAllUsers(){
-        Gson gson = new Gson();
-        String json = gson.toJson(userService.findAllUsers()); 
-        return gson.fromJson(json, new TypeToken<List<User>>(){}.getType());
+        return userService.findAllUsers();
     }
 
     @GetMapping("/{id}")
     public User findById(@PathVariable("id") Integer id){
-        Gson gson = new Gson();
-        String json = gson.toJson(userService.findById(id));
-        return gson.fromJson(json, new TypeToken<User>(){}.getType());
+        return userService.findById(id);
     }
 
     @PutMapping("/{id}")
