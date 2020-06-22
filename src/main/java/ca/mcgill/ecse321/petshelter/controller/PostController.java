@@ -18,32 +18,17 @@ public class PostController {
     @Autowired
     PostService postService;
 
-    /**
-     * Create a new Post.
-     * @param userId
-     * @param petId
-     * @return
-     */
     @PostMapping("/create")
-    public Post createPost(@RequestParam("user") Integer userId, @RequestParam("pet") Integer petId){
-        return postService.createPost(userId, petId);
+    public Post createPost(@RequestBody Post post){
+        return postService.createPost(post);
 
     }
 
-    /**
-     * Find all Posts.
-     * @return
-     */
     @GetMapping("/")
     public List<Post> getAllPosts(){
         return postService.findAllPosts();
     }
 
-    /**
-     * Find Post with the given id.
-     * @param id
-     * @return
-     */
     @GetMapping("/{id}")
     public Post findById(@PathVariable("id") Integer id){
         return postService.findById(id);

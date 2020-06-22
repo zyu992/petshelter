@@ -29,14 +29,7 @@ public class PostService {
     ApplicationService applicationService;
 
     @Transactional
-    public Post createPost(Integer userId, Integer petId){
-        if (userId == null || petId == null || userId <= 0 || petId <= 0){
-            throw new IllegalArgumentException("Found Illegal Argument. ");
-        }
-        Post post = new Post();
-        post.setPostedBy(userService.findById(userId));
-        post.setPet(petService.findById(petId));
-        post.setDate(new Date());
+    public Post createPost(Post post){
         postMapper.insert(post);
         return post;
     }
@@ -58,10 +51,10 @@ public class PostService {
         }
         Post post = findById(postId);
         if (post.getAdopter() != null){
-            throw new IllegalArgumentException("An adopter has been assigned to this post. ");
+            throw new IllegalArgumentException("An adopter has already been assigned to this post. ");
         }
         post.setAdopter(applicationService.findById(applicationId).getApplicant());
-        post.setClosed(true);
+        post.setIsClosed(true);
         applicationService.acceptApplication(applicationId);
         for (Application app : post.getApplications()){
             applicationService.closeApplication(app.getApplicationId());

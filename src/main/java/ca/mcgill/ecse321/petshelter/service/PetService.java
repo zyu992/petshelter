@@ -19,15 +19,7 @@ public class PetService {
     PostService postService;
 
     @Transactional
-    public Pet createPet(String name, Integer age, String species) {
-        if (name == null || age == null || species == null ||
-                name.trim().isEmpty() || species.trim().isEmpty() || age < 0) {
-            throw new IllegalArgumentException();
-        }
-        Pet pet = new Pet();
-        pet.setPetName(name);
-        pet.setAge(age);
-        pet.setSpecies(species);
+    public Pet createPet(Pet pet) {
         petMapper.insert(pet);
         return pet;
     }

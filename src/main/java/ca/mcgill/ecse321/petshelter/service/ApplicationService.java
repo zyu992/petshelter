@@ -35,19 +35,7 @@ public class ApplicationService {
     }
 
     @Transactional
-    public Application createApplication(Integer applicantId, Integer postId, String message){
-        if (applicantId == null || postId == null || applicantId <= 0 || postId <= 0){
-            throw new IllegalArgumentException();
-        }
-        if (userService.findById(applicantId) == null || postService.findById(postId) == null){
-            throw new EntityNotFoundException();
-        }
-        Application application = new Application();
-        application.setApplicant(userService.findById(applicantId));
-        application.setPost(postService.findById(postId));
-        application.setMessage(message);
-        application.setAccepted(false);
-        application.setDate(new Date());
+    public Application createApplication(Application application){
         applicationMapper.insert(application);
         return application;
     }
@@ -66,14 +54,14 @@ public class ApplicationService {
     @Transactional
     public Application acceptApplication(Integer id){
         Application application = applicationMapper.findById(id);
-        application.setAccepted(true);
+        application.setIsAccepted(true);
         return updateApplication(application);
     }
 
     @Transactional
     public Application closeApplication(Integer id){
         Application application = applicationMapper.findById(id);
-        application.setClosed(true);
+        application.setIsClosed(true);
         return updateApplication(application);
     }
 

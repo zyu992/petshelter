@@ -16,14 +16,12 @@ public class ApplicationController {
     ApplicationService applicationService;
 
     @PostMapping("/create")
-    public Application createApplication(@RequestParam("applicant") Integer applicantId,
-                                         @RequestParam("post") Integer postId,
-                                         @RequestParam("message") String message){
-        return applicationService.createApplication(applicantId, postId, message);
+    public Application createApplication(@RequestBody Application application){
+        return applicationService.createApplication(application);
     }
 
     @GetMapping("/")
-    public List<Application> findAllApplications(){
+    public List<Application> findAll(){
         return applicationService.findAllApplications();
     }
 

@@ -15,10 +15,8 @@ public class PetController {
     PetService petService;
 
     @PostMapping("/create")
-    public Pet createPet(@RequestParam("name") String name,
-                         @RequestParam("age") Integer age,
-                         @RequestParam("species") String species){
-        return petService.createPet(name, age, species);
+    public Pet createPet(@RequestBody Pet pet){
+        return petService.createPet(pet);
     }
 
     @GetMapping("/")

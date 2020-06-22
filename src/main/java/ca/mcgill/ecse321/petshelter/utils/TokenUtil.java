@@ -1,4 +1,4 @@
-package ca.mcgill.ecse321.petshelter.util;
+package ca.mcgill.ecse321.petshelter.utils;
 
 import java.util.Date;
 
@@ -6,12 +6,11 @@ import ca.mcgill.ecse321.petshelter.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
 
 public class TokenUtil {
     public static final String SUBJECT = "CODING";
 
-    public static final String SECRETKEY = "petshelter";
+    public static final String SECRET_KEY = "petshelter";
 
     public static final long EXPIRE = 1000 * 60 * 60 * 24 * 7;
 
@@ -26,7 +25,7 @@ public class TokenUtil {
         .claim("email", user.getEmail())
         .setIssuedAt(new Date())
         .setExpiration(new Date(System.currentTimeMillis() + EXPIRE))
-        .signWith(SignatureAlgorithm.ES256, SECRETKEY)
+        .signWith(SignatureAlgorithm.ES256, SECRET_KEY)
         .compact();
     }
 

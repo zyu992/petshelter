@@ -15,15 +15,7 @@ public class UserService {
     UserMapper userMapper;
 
     @Transactional
-    public User createUser(String username, String password, String email){
-        if (username == null || password == null || email == null ||
-                username.trim().isEmpty() || password.trim().isEmpty() || email.trim().isEmpty()){
-            throw new IllegalArgumentException("User information is incomplete. ");
-        }
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
-        user.setEmail(email);
+    public User createUser(User user){
         userMapper.insert(user);
         return user;
     }
