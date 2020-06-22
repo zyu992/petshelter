@@ -33,6 +33,12 @@ public class UserService {
     }
 
     @Transactional
+    public User findByUsername(String username){
+        User user = userDao.findByUsername(username).get();
+        return user;
+    }
+
+    @Transactional
     public void update(Integer id, User user){
         User temp = userDao.findById(id).get();
         temp.setUsername(user.getUsername());
