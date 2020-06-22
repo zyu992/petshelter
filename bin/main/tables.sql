@@ -46,9 +46,16 @@ CREATE TABLE messages
     message_id INT(16) ZEROFILL AUTO_INCREMENT PRIMARY KEY,
     user_id    INT(16)      NOT NULL,
     content    VARCHAR(200) NOT NULL,
-    time       TIME         NOT NULL,
+    time       TIMESTAMP         NOT NULL,
     room_id    INT(16)      NOT NULL
 );
 
-
-
+drop table if exists payment_history;
+CREATE TABLE payment_history
+(
+    payment_id INT(16) ZEROFILL AUTO_INCREMENT PRIMARY KEY,
+    creditcard INT(16) ZEROFILL NOT NULL,
+    time       timestamp NOT NULL,
+    amount     INT(16) ZEROFILL NOT NULL,
+    payer_id   INT(16) ZEROFILL NOT NULL
+);git
