@@ -16,13 +16,13 @@ public class PetController {
     @Autowired
     PetService petService;
 
-    @PostMapping("/")
+    @PostMapping
     public Result createPet(@RequestBody Pet pet){
         petService.createPet(pet);
         return new Result(ResultCode.SUCCESS);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<Pet> getAllPets(){
         return petService.findAllPets();
     }

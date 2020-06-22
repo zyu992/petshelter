@@ -16,13 +16,13 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/")
+    @PostMapping
     public Result createUser(@RequestBody User user){
         userService.createUser(user);
         return new Result(ResultCode.SUCCESS);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<User> getAllUsers(){
         return userService.findAllUsers();
     }

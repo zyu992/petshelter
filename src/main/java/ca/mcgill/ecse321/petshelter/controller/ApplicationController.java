@@ -16,13 +16,13 @@ public class ApplicationController {
     @Autowired
     ApplicationService applicationService;
 
-    @PostMapping("/")
+    @PostMapping
     public Result createApplication(@RequestBody Application application){
         applicationService.createApplication(application);
         return new Result(ResultCode.SUCCESS);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<Application> findAll(){
         return applicationService.findAllApplications();
     }

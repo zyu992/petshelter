@@ -16,13 +16,13 @@ public class PostController {
     @Autowired
     PostService postService;
 
-    @PostMapping("/")
+    @PostMapping
     public Result createPost(@RequestBody Post post){
         postService.createPost(post);
         return new Result(ResultCode.SUCCESS);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<Post> findAll(){
         return postService.findAllPosts();
     }
