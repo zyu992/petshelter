@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="ca.mcgill.ecse321.petshelter.mapper.PostMapper">
+<mapper namespace="ca.mcgill.ecse321.petshelter.dao.PostDao">
     <resultMap id="BaseResultMap" type="ca.mcgill.ecse321.petshelter.entity.Post">
         <id property="postId" column="post_id"/>
         <result property="date" column="post_date"/>

@@ -1,53 +1,36 @@
 package ca.mcgill.ecse321.petshelter.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.sql.Timestamp;
 
+
+@Data
+@Entity
+@NoArgsConstructor
+@Table(name = "messages")
 public class Message {
+    @Id
+    @GeneratedValue
+    @Column(name = "message_id")
     private Integer messageId;
+
+    @ManyToOne(optional = false)
+    @JoinColumn
     private User sender;
+
+    @ManyToOne(optional = false)
+    @JoinColumn
+    private User receiver;
+
+    @Column(nullable = false)
     private String content;
+
+    @Column(nullable = false)
     private Timestamp time;
+
+    @Column(name = "room_id", nullable = false)
     private Integer roomId;
-
-    public Integer getMessageId() {
-        return messageId;
-    }
-
-    public void setMessageId(Integer messageId) {
-        this.messageId = messageId;
-    }
-
-    public User getSender() {
-        return sender;
-    }
-
-    public void setSender(User sender) {
-        this.sender = sender;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Timestamp getTime() {
-        return time;
-    }
-
-    public void setTime(Timestamp time) {
-        this.time = time;
-    }
-
-    public Integer getRoomId() {
-        return roomId;
-    }
-
-    public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
-    }
-
-    
 }
