@@ -1,8 +1,9 @@
 package ca.mcgill.ecse321.petshelter.controller;
 
 import ca.mcgill.ecse321.petshelter.entity.Application;
-import ca.mcgill.ecse321.petshelter.mapper.ApplicationMapper;
 import ca.mcgill.ecse321.petshelter.service.ApplicationService;
+import ca.mcgill.ecse321.petshelter.utils.Result;
+import ca.mcgill.ecse321.petshelter.utils.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,12 +16,13 @@ public class ApplicationController {
     @Autowired
     ApplicationService applicationService;
 
-    @PostMapping("/create")
-    public Application createApplication(@RequestBody Application application){
-        return applicationService.createApplication(application);
+    @PostMapping
+    public Result createApplication(@RequestBody Application application){
+        applicationService.createApplication(application);
+        return new Result(ResultCode.SUCCESS);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<Application> findAll(){
         return applicationService.findAllApplications();
     }

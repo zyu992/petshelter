@@ -1,23 +1,20 @@
 package ca.mcgill.ecse321.petshelter.service;
 
+import ca.mcgill.ecse321.petshelter.dao.PostDao;
 import ca.mcgill.ecse321.petshelter.entity.Application;
-import ca.mcgill.ecse321.petshelter.entity.Pet;
 import ca.mcgill.ecse321.petshelter.entity.Post;
 import ca.mcgill.ecse321.petshelter.entity.User;
-import ca.mcgill.ecse321.petshelter.mapper.PostMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Service
 public class PostService {
     @Autowired
-    PostMapper postMapper;
+    PostDao postDao;
 
     @Autowired
     UserService userService;
@@ -29,23 +26,24 @@ public class PostService {
     ApplicationService applicationService;
 
     @Transactional
-    public Post createPost(Post post){
-        postMapper.insert(post);
-        return post;
+    public void createPost(Post post){
+        post.setDate(new Date());
+        post.setIsClosed(false);
+        postDao.save(post);
     }
 
     @Transactional
     public List<Post> findAllPosts(){
-        return postMapper.findAll();
+        return postDao.findAll();
     }
 
     @Transactional
     public Post findById(Integer id) {
-        return postMapper.findById(id);
+        return postDao.findById(id).get();
     }
 
     @Transactional
-    public Post confirmAdopter(Integer postId, Integer applicationId){
+    public void confirmAdopter(Integer postId, Integer applicationId){
         if (postId == null || applicationId == null){
             throw new IllegalArgumentException();
         }
@@ -59,25 +57,17 @@ public class PostService {
         for (Application app : post.getApplications()){
             applicationService.closeApplication(app.getApplicationId());
         }
-        postMapper.update(post);
-        return postMapper.findById(postId);
+        postDao.save(post);
     }
 
     @Transactional
     public List<Post> findByUser(Integer userId){
         User user = userService.findById(userId);
-        List<Post> posts = new ArrayList<>();
-        for (Post post : user.getPosts()){
-            posts.add(findById(post.getPostId()));
-        }
-        return posts;
+        return user.getPosts();
     }
-
-
 
     @Transactional
     public Post findByApplication(Integer applicationId){
-        Application application = applicationService.findById(applicationId);
-        return findById(application.getPost().getPostId());
+        return applicationService.findById(applicationId).getAppliedPost();
     }
 }

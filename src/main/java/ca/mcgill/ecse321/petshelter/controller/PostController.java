@@ -1,13 +1,11 @@
 package ca.mcgill.ecse321.petshelter.controller;
 
-import ca.mcgill.ecse321.petshelter.entity.Application;
-import ca.mcgill.ecse321.petshelter.entity.Pet;
 import ca.mcgill.ecse321.petshelter.entity.Post;
 import ca.mcgill.ecse321.petshelter.service.PostService;
-import org.apache.ibatis.annotations.Param;
+import ca.mcgill.ecse321.petshelter.utils.Result;
+import ca.mcgill.ecse321.petshelter.utils.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -18,14 +16,14 @@ public class PostController {
     @Autowired
     PostService postService;
 
-    @PostMapping("/create")
-    public Post createPost(@RequestBody Post post){
-        return postService.createPost(post);
-
+    @PostMapping
+    public Result createPost(@RequestBody Post post){
+        postService.createPost(post);
+        return new Result(ResultCode.SUCCESS);
     }
 
-    @GetMapping("/")
-    public List<Post> getAllPosts(){
+    @GetMapping
+    public List<Post> findAll(){
         return postService.findAllPosts();
     }
 
@@ -35,8 +33,9 @@ public class PostController {
     }
 
     @PutMapping("/assign")
-    public Post assignAdopter(@RequestParam("post") Integer postId, @RequestParam("application") Integer applicationId){
-        return postService.confirmAdopter(postId, applicationId);
+    public Result assignAdopter(@RequestParam("post") Integer postId, @RequestParam("application") Integer applicationId){
+        postService.confirmAdopter(postId, applicationId);
+        return new Result(ResultCode.SUCCESS);
     }
 
     @GetMapping("/user/{userId}")

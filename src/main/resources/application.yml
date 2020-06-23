@@ -2,12 +2,24 @@ server:
   port: 8080
 
 spring:
+
   datasource:
-    url: jdbc:mysql://39.97.180.17:3306/petshelter?serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/petshelter?serverTimezone=UTC
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: jyang285
+    password: root
 
-mybatis:
-  mapper-locations: classpath:/mapper/*.xml
-  type-aliases-package: ca.mcgill.ecse321.petshelter.entity
+  jpa:
+    database: MySQL
+    show-sql: true
+    open-in-view: true
+    hibernate:
+      ddl-auto: create-drop
+
+  application:
+    name: pet-shelter
+
+jwt:
+  config:
+    ttl: 3600000
+

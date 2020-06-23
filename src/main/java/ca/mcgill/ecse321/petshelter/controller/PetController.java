@@ -2,6 +2,8 @@ package ca.mcgill.ecse321.petshelter.controller;
 
 import ca.mcgill.ecse321.petshelter.entity.Pet;
 import ca.mcgill.ecse321.petshelter.service.PetService;
+import ca.mcgill.ecse321.petshelter.utils.Result;
+import ca.mcgill.ecse321.petshelter.utils.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,12 +16,13 @@ public class PetController {
     @Autowired
     PetService petService;
 
-    @PostMapping("/create")
-    public Pet createPet(@RequestBody Pet pet){
-        return petService.createPet(pet);
+    @PostMapping
+    public Result createPet(@RequestBody Pet pet){
+        petService.createPet(pet);
+        return new Result(ResultCode.SUCCESS);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<Pet> getAllPets(){
         return petService.findAllPets();
     }

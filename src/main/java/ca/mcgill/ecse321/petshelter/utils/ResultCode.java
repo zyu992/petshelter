@@ -5,7 +5,8 @@ public enum ResultCode {
     FAIL(false, 10001, "Failed"),
     UNAUTHENTICATED(false, 10002, "Not logged in"),
     UNAUTHORIZED(false, 10003, "Unauthorized"),
-    SERVER_ERROR(false, 99999, "Server error");
+    SERVER_ERROR(false, 99999, "Server error"),
+    USERNAME_OR_PASSWORD_ERROR(false, 20000, "Credentials do not match with our records");
 
     boolean success;
     int code;
