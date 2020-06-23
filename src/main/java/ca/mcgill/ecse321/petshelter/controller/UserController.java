@@ -2,13 +2,10 @@ package ca.mcgill.ecse321.petshelter.controller;
 
 import ca.mcgill.ecse321.petshelter.entity.User;
 import ca.mcgill.ecse321.petshelter.service.UserService;
-import ca.mcgill.ecse321.petshelter.utils.CommonException;
 import ca.mcgill.ecse321.petshelter.utils.Result;
 import ca.mcgill.ecse321.petshelter.utils.ResultCode;
 import ca.mcgill.ecse321.petshelter.utils.TokenUtil;
-import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +15,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/users")
-public class UserController {
+public class UserController extends BaseController {
 
     @Autowired
     UserService userService;
@@ -26,7 +23,7 @@ public class UserController {
     @Autowired
     TokenUtil tokenUtil;
 
-    @PostMapping
+    @PostMapping("/register")
     public Result createUser(@RequestBody User user){
         userService.createUser(user);
         return new Result(ResultCode.SUCCESS);
@@ -61,12 +58,6 @@ public class UserController {
 
     @PostMapping("/profile")
     public Result profile(HttpServletRequest request) throws Exception {
-        String authorization = request.getHeader("Authorization");
-        if(StringUtils.isEmpty(authorization)){
-            throw new CommonException(ResultCode.UNAUTHENTICATED);
-        }
-        String token = authorization.replace("Bearer", "");
-        Claims claims = TokenUtil.validateJWT(token);
         Integer userId = Integer.valueOf(claims.getId());
         return new Result(ResultCode.SUCCESS, userService.findById(userId));
     }
