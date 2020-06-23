@@ -8,6 +8,6 @@ COPY ${DEPENDENCY}/BOOT-INF/classes /app
 ENTRYPOINT ["java","-cp","app:app/lib/*","ca.mcgill.ecse321.petshelter.MainApplication"]
 
 # FROM openjdk:8-jdk-alpine
-# ARG JAR_FILE=target/*.jar
+# ARG JAR_FILE=build/libs/*.jar
 # COPY ${JAR_FILE} app.jar
 # ENTRYPOINT ["java","-jar","/app.jar"]

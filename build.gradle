@@ -1,12 +1,14 @@
 plugins {
     id 'java'
     id 'com.google.cloud.tools.jib' version '2.4.0'
+    id "org.springframework.boot" version "2.1.0.RELEASE"
 }
 
 group 'org.example'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -25,4 +27,9 @@ dependencies {
     runtime 'io.jsonwebtoken:jjwt-impl:0.11.2',
             'io.jsonwebtoken:jjwt-gson:0.11.2'
 
+}
+
+bootJar {
+    baseName = 'petshelter-backend'
+    version =  '0.1.0'
 }
