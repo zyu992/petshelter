@@ -11,6 +11,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 
 @Component
 public class JwtInterceptor extends HandlerInterceptorAdapter {
@@ -24,12 +25,11 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
         if(!StringUtils.isEmpty(authorization) && authorization.startsWith("Bearer")){
             String token = authorization.replace("Bearer", "");
             Claims claims = TokenUtil.validateJWT(token);
-            if (claims != null){
+            if (claims != null && new Date().compareTo(claims.getExpiration()) < 0){
                 request.setAttribute("user_claims", claims);
                 return true;
             }
         }
         throw new CommonException(ResultCode.UNAUTHENTICATED);
     }
-
 }

@@ -7,8 +7,6 @@ import ca.mcgill.ecse321.petshelter.utils.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/applications")
 public class ApplicationController {
@@ -23,22 +21,22 @@ public class ApplicationController {
     }
 
     @GetMapping
-    public List<Application> findAll(){
-        return applicationService.findAllApplications();
+    public Result findAll(){
+        return new Result(ResultCode.SUCCESS, applicationService.findAllApplications());
     }
 
     @GetMapping("/{id}")
-    public Application findById(@PathVariable("id") Integer id){
-        return applicationService.findById(id);
+    public Result findById(@PathVariable("id") Integer id){
+        return new Result(ResultCode.SUCCESS, applicationService.findById(id));
     }
 
     @GetMapping("/user/{userId}")
-    public List<Application> findByUser(@PathVariable("userId") Integer id){
-        return applicationService.findByUser(id);
+    public Result findByUser(@PathVariable("userId") Integer id){
+        return new Result(ResultCode.SUCCESS, applicationService.findByUser(id));
     }
 
     @GetMapping("/post/{postId}")
-    public List<Application> findByPost(@PathVariable("postId") Integer id){
-        return applicationService.findByPost(id);
+    public Result findByPost(@PathVariable("postId") Integer id){
+        return new Result(ResultCode.SUCCESS, applicationService.findByPost(id));
     }
 }

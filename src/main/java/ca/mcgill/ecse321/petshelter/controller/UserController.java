@@ -36,8 +36,8 @@ public class UserController extends BaseController {
     }
 
     @GetMapping("/{id}")
-    public User findById(@PathVariable("id") Integer id){
-        return userService.findById(id);
+    public Result findById(@PathVariable("id") Integer id){
+        return new Result(ResultCode.SUCCESS, userService.findById(id));
     }
 
     @PutMapping("/{id}")
