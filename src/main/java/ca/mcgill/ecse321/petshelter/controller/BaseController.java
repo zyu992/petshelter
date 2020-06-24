@@ -12,7 +12,7 @@ public class BaseController {
     protected Claims claims;
 
     @ModelAttribute
-    public void setResAnRes(HttpServletRequest request, HttpServletResponse response){
+    public void setReqAndResp(HttpServletRequest request, HttpServletResponse response){
         this.request = request;
         this.response = response;
         Object obj = request.getAttribute("user_claims");
