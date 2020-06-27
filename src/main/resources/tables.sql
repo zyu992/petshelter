@@ -58,4 +58,4 @@ CREATE TABLE payment_history
     time       timestamp NOT NULL,
     amount     INT(16) ZEROFILL NOT NULL,
     payer_id   INT(16) ZEROFILL NOT NULL
-);git
+);
