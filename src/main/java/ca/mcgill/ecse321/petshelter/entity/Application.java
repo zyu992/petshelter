@@ -27,8 +27,6 @@ public class Application {
     @JsonIgnoreProperties("applications")
     private User applicant;
 
-    private String message;
-
     @Column(name = "is_accepted", nullable = false)
     private Boolean isAccepted;
 

@@ -1,1 +1,3 @@
-export const BackendHost = 'http://39.97.180.17:8080';
+import Axios from "axios";
+
+export const BackendHost = 'http://localhost:8080';
