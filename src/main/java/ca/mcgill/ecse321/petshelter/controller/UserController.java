@@ -53,7 +53,10 @@ public class UserController extends BaseController {
             return new Result(ResultCode.USERNAME_OR_PASSWORD_ERROR);
         }
         String token = tokenUtil.generateJWT(user.getUserId(), user.getUsername(), new HashMap<String, Object>());
-        return new Result(ResultCode.SUCCESS, token);
+        Map <Object, Object> map = new HashMap<>();
+        map.put("user",user);
+        map.put("token",token);
+        return new Result(ResultCode.SUCCESS, map);
     }
 
     @PostMapping("/profile")
