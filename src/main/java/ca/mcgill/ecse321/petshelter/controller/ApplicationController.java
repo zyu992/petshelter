@@ -14,7 +14,7 @@ public class ApplicationController {
     @Autowired
     ApplicationService applicationService;
 
-    @PostMapping
+    @PostMapping("/create")
     public Result createApplication(@RequestBody Application application){
         applicationService.createApplication(application);
         return new Result(ResultCode.SUCCESS);
