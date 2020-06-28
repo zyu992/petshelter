@@ -4,7 +4,7 @@ import { BackendHost } from '../../Config/config';
 const backendHost = BackendHost+"/api/pets/";
 
 export const createPet = (token, pet) => {
-    return axios.post(backendHost+'create', data=pet, {
+    return axios.post(backendHost, data=pet, {
         headers: {
             "Authorization": "Bearer:"+ token
         }

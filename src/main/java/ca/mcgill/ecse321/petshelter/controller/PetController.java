@@ -14,7 +14,7 @@ public class PetController {
     @Autowired
     PetService petService;
 
-    @PostMapping("/create")
+    @PostMapping
     public Result createPet(@RequestBody Pet pet){
         petService.createPet(pet);
         return new Result(ResultCode.SUCCESS);

@@ -14,7 +14,7 @@ public class PostController {
     @Autowired
     PostService postService;
 
-    @PostMapping("/create")
+    @PostMapping
     public Result createPost(@RequestBody Post post){
         postService.createPost(post);
         return new Result(ResultCode.SUCCESS);

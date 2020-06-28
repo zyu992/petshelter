@@ -58,10 +58,4 @@ public class UserController extends BaseController {
         map.put("token",token);
         return new Result(ResultCode.SUCCESS, map);
     }
-
-    @PostMapping("/profile")
-    public Result profile(HttpServletRequest request) throws Exception {
-        Integer userId = Integer.valueOf(claims.getId());
-        return new Result(ResultCode.SUCCESS, userService.findById(userId));
-    }
 }
