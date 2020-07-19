@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/posts")
+@RequestMapping("/api/posts/")
 public class PostController {
 
     @Autowired
@@ -25,23 +25,23 @@ public class PostController {
         return new Result(ResultCode.SUCCESS, postService.findAllPosts());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public Result findById(@PathVariable("id") Integer id){
         return new Result(ResultCode.SUCCESS, postService.findById(id));
     }
 
-    @PutMapping("/assign")
+    @PutMapping("assign")
     public Result assignAdopter(@RequestParam("post") Integer postId, @RequestParam("application") Integer applicationId){
         postService.confirmAdopter(postId, applicationId);
         return new Result(ResultCode.SUCCESS);
     }
 
-    @GetMapping("/user/{userId}")
+    @GetMapping("user/{userId}")
     public Result findByUser(@PathVariable("userId") Integer id){
         return new Result(ResultCode.SUCCESS, postService.findByUser(id));
     }
 
-    @GetMapping("/application/{applicationId}")
+    @GetMapping("application/{applicationId}")
     public Result findByApplication(@PathVariable("applicationId") Integer id){
         return new Result(ResultCode.SUCCESS, postService.findByApplication(id));
     }

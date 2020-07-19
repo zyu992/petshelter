@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/applications")
+@RequestMapping("/api/applications/")
 public class ApplicationController {
 
     @Autowired
@@ -20,22 +20,22 @@ public class ApplicationController {
         return new Result(ResultCode.SUCCESS);
     }
 
-    @GetMapping
-    public Result findAll(){
-        return new Result(ResultCode.SUCCESS, applicationService.findAllApplications());
-    }
+    // @GetMapping
+    // public Result findAll(){
+    //     return new Result(ResultCode.SUCCESS, applicationService.findAllApplications());
+    // }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public Result findById(@PathVariable("id") Integer id){
         return new Result(ResultCode.SUCCESS, applicationService.findById(id));
     }
 
-    @GetMapping("/user/{userId}")
+    @GetMapping("user/{userId}")
     public Result findByUser(@PathVariable("userId") Integer id){
         return new Result(ResultCode.SUCCESS, applicationService.findByUser(id));
     }
 
-    @GetMapping("/post/{postId}")
+    @GetMapping("post/{postId}")
     public Result findByPost(@PathVariable("postId") Integer id){
         return new Result(ResultCode.SUCCESS, applicationService.findByPost(id));
     }

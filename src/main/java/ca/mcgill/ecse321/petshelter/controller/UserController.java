@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/users/")
 public class UserController extends BaseController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class UserController extends BaseController {
     @Autowired
     TokenUtil tokenUtil;
 
-    @PostMapping("/register")
+    @PostMapping("register")
     public Result createUser(@RequestBody User user){
         userService.createUser(user);
         return new Result(ResultCode.SUCCESS);
@@ -35,18 +35,18 @@ public class UserController extends BaseController {
         return new Result(ResultCode.SUCCESS, users);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public Result findById(@PathVariable("id") Integer id){
         return new Result(ResultCode.SUCCESS, userService.findById(id));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("{id}")
     public Result updateUser(@PathVariable("id") Integer id, @RequestBody User user){
         userService.update(id, user);
         return new Result(ResultCode.SUCCESS);
     }
 
-    @PostMapping("/login")
+    @PostMapping("login")
     public Result login(@RequestBody Map<String, String> loginMap){
         User user = userService.findByUsername(loginMap.get("username"));
         if (user == null || !user.getPassword().equals(loginMap.get("password"))){

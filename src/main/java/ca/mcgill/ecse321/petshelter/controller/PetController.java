@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/pets")
+@RequestMapping("/api/pets/")
 public class PetController {
 
     @Autowired
@@ -25,13 +25,13 @@ public class PetController {
         return new Result(ResultCode.SUCCESS, petService.findAllPets());
     }
 
-    @GetMapping("/{id}}")
+    @GetMapping("{id}")
     public Result findById(@PathVariable("id") Integer id){
         return new Result(ResultCode.SUCCESS, petService.findById(id));
     }
 
-    @GetMapping("/post/{postId}")
-    public Result getPet(@PathVariable("postId") Integer id) {
+    @GetMapping("post/{postId}")
+    public Result findByPost(@PathVariable("postId") Integer id) {
         return new Result(ResultCode.SUCCESS, petService.findByPost(id));
     }
 }
