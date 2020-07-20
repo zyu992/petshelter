@@ -1,13 +1,13 @@
 import React from 'react';
-import Header from './Component/Header'
 import './App.css';
+import { useRecoilState } from 'recoil';
+import { IsLoggedIn } from './Store';
+import Authorized from './Pages/Authorized';
+import Unauthorized from './Pages/Unauthorized';
 
 const App = () => {
-  return (
-  <div className="react-container">
-    <Header/>
-  </div>
-  )
+  const [isLoggedIn,_] = useRecoilState(IsLoggedIn);
+  return isLoggedIn ? <Authorized /> : <Unauthorized />
 }
 
 export default App;

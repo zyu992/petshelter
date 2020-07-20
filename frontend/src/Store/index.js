@@ -1,19 +1,26 @@
-import atom from "recoil";
+import {atom} from 'recoil';
 
-//State management class
 export const Token = atom({
-    key: 'Token',
+    name:"Token",
     default: ''
-})
+});
 
-export const currentUser =  atom({
-    key: 'currentUser',
-    default: null
-})
+export const CurUser = atom({
+    name:"currentUser",
+    default: undefined
+});
 
+export const PetList = atom({
+    name:"petList",
+    default:[]
+});
 
-export const availableAnimals = atom({
-    key: 'availableAnimals',
-    default: []
-})
+export const ShoppingCart = atom({
+    name:"shoopingCart",
+    default:[]
+});
 
+export const IsLoggedIn = atom({
+    name:"isLoggedIn",
+    default:false
+});

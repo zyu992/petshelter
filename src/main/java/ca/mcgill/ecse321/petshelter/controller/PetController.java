@@ -7,10 +7,8 @@ import ca.mcgill.ecse321.petshelter.utils.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/api/pets")
+@RequestMapping("/api/pets/")
 public class PetController {
 
     @Autowired
@@ -23,17 +21,17 @@ public class PetController {
     }
 
     @GetMapping
-    public List<Pet> getAllPets(){
-        return petService.findAllPets();
+    public Result getAllPets(){
+        return new Result(ResultCode.SUCCESS, petService.findAllPets());
     }
 
-    @GetMapping("/{id}}")
-    public Pet findById(@PathVariable("id") Integer id){
-        return petService.findById(id);
+    @GetMapping("{id}")
+    public Result findById(@PathVariable("id") Integer id){
+        return new Result(ResultCode.SUCCESS, petService.findById(id));
     }
 
-    @GetMapping("/post/{postId}")
-    public Pet getPet(@PathVariable("postId") Integer id) {
-        return petService.findByPost(id);
+    @GetMapping("post/{postId}")
+    public Result findByPost(@PathVariable("postId") Integer id) {
+        return new Result(ResultCode.SUCCESS, petService.findByPost(id));
     }
 }
