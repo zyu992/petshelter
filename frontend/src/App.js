@@ -1,18 +1,13 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Login from './Components/Login';
+import { useRecoilState } from 'recoil';
+import { IsLoggedIn } from './Store';
+import Authorized from './Pages/Authorized';
+import Unauthorized from './Pages/Unauthorized';
 
 const App = () => {
-  return (
-  <Router>
-    <div className="App">
-      <Link to="/">
-        <Login />
-      </Link>
-    </div>
-  </Router>
-  );
+  const [isLoggedIn,_] = useRecoilState(IsLoggedIn);
+  return isLoggedIn ? <Authorized /> : <Unauthorized />
 }
 
 export default App;

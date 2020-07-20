@@ -5,18 +5,22 @@ export const Token = atom({
     default: ''
 });
 
-export const curUser = atom({
+export const CurUser = atom({
     name:"currentUser",
     default: undefined
 });
 
-export const petList = atom({
+export const PetList = atom({
     name:"petList",
     default:[]
 });
 
-export const shoppingCart = atom({
+export const ShoppingCart = atom({
     name:"shoopingCart",
     default:[]
 });
 
+export const IsLoggedIn = atom({
+    name:"isLoggedIn",
+    default:false
+});
