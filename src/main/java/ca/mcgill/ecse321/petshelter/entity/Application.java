@@ -1,14 +1,9 @@
 package ca.mcgill.ecse321.petshelter.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
-@Data
-@NoArgsConstructor
 @Entity
 @Table(name = "applications")
 public class Application {
@@ -35,4 +30,28 @@ public class Application {
 
     @Column(nullable = false)
     private Date date;
+
+    public Integer getApplicationId() { return applicationId;}
+
+    public void setApplicationId(Integer pApplicationId) {applicationId = pApplicationId;}
+
+    public Post getAppliedPost() { return appliedPost;}
+
+    public void setAppliedPost(Post pAppliedPost){appliedPost = pAppliedPost;}
+
+    public User getApplicant() {return applicant;}
+
+    public void setApplicant(User pApplicant) {applicant = pApplicant;}
+
+    public Boolean getIsAccepted() {return isAccepted;}
+
+    public void setIsAccepted(Boolean pIsAccepted) {isAccepted = pIsAccepted;}
+
+    public Boolean getIsClosed() {return isClosed;}
+
+    public void setIsClosed(Boolean pIsClosed) {isClosed = pIsClosed;}
+
+    public Date getDate(){return date;}
+
+    public void setDate(Date pDate) {date = pDate;}
 }

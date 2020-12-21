@@ -2,8 +2,6 @@ package ca.mcgill.ecse321.petshelter.controller;
 
 import ca.mcgill.ecse321.petshelter.entity.Application;
 import ca.mcgill.ecse321.petshelter.service.ApplicationService;
-import ca.mcgill.ecse321.petshelter.utils.Result;
-import ca.mcgill.ecse321.petshelter.utils.ResultCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

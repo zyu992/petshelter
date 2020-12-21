@@ -2,17 +2,12 @@ package ca.mcgill.ecse321.petshelter.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Getter
-@Setter
+
 @Entity
-@NoArgsConstructor
 @Table(name = "users")
 public class User {
     @Id
@@ -46,8 +41,43 @@ public class User {
     @JsonIgnoreProperties("sender")
     private List<Message> sentMessages;
 
-    @OneToMany(mappedBy = "receiver")
-    @JsonIgnoreProperties("receiver")
-    private List<Message> receivedMessages;
+    @ManyToMany(mappedBy = "rooms")
+    @JsonIgnoreProperties("rooms")
+    private List<Room> rooms;
 
+    public Integer getUserId() {return userId;}
+
+    public void setUserId(Integer pUserId) {userId = pUserId;}
+
+    public String getUsername() {return username;}
+
+    public void setUsername(String pUsername) {username = pUsername;}
+
+    public String getPassword() {return password;}
+
+    public void setPassword(String pPassword) {password = pPassword;}
+
+    public String getEmail() {return email;}
+
+    public void setEmail(String pEmail) {email = pEmail;}
+
+    public List<Application> getApplications() {return applications;}
+
+    public void setApplications(List<Application> pApplications) {applications = pApplications;}
+
+    public List<Post> getPosts() {return posts;}
+
+    public void setPosts(List<Post> pPosts) {posts = pPosts;}
+
+    public List<Payment> getPayments() {return payments;}
+
+    public void setPayments(List<Payment> pPayments) {payments = pPayments;}
+
+    public List<Message> getMessages() {return sentMessages;}
+
+    public void setMessages(List<Message> pMessages) {sentMessages = pMessages;}
+
+    public List<Room> getRooms() {return rooms;}
+
+    public void setRooms(List<Room> pRooms) {rooms = pRooms;}
 }

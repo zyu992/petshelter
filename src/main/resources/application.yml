@@ -19,7 +19,7 @@ spring:
   application:
     name: pet-shelter
 
-jwt:
-  config:
-    ttl: 3600000
+# jwt:
+#   config:
+#     ttl: 3600000
 

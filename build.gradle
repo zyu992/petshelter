@@ -6,8 +6,8 @@ plugins {
 group 'org.junjieyang'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 11.0
+targetCompatibility = 11.0
 
 repositories {
     mavenCentral()
@@ -23,8 +23,7 @@ dependencies {
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.20'
     compile 'io.jsonwebtoken:jjwt-api:0.11.2'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.3.1.RELEASE'
-    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
-    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
     runtime 'io.jsonwebtoken:jjwt-impl:0.11.2'
@@ -35,7 +34,7 @@ bootJar {
     version =  '0.1.0'
 }
 
-task runShell(type: Exec){
-    workingDir "$projectDir"
-    commandLine 'sh', './build.sh'
-}
+// task runShell(type: Exec){
+//     workingDir "$projectDir"
+//     commandLine 'sh', './build.sh'
+// }

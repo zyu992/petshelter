@@ -1,16 +1,12 @@
 package ca.mcgill.ecse321.petshelter.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 
-@Data
 @Entity
-@NoArgsConstructor
 @Table(name = "messages")
 public class Message {
     @Id
@@ -23,11 +19,6 @@ public class Message {
     @JsonIgnoreProperties("sentMessages")
     private User sender;
 
-    @ManyToOne(optional = false)
-    @JoinColumn
-    @JsonIgnoreProperties("receivedMessages")
-    private User receiver;
-
     @Column(nullable = false)
     private String content;
 
@@ -36,4 +27,24 @@ public class Message {
 
     @Column(name = "room_id", nullable = false)
     private Integer roomId;
+
+    public Integer getMessageId() {return messageId;}
+
+    public void setMessageId(Integer pMessageId) {messageId = pMessageId;}
+
+    public User getSender() { return sender;}
+
+    public void setSender(User pSender) {sender = pSender;}
+
+    public String getContent() {return content;}
+
+    public void setContent(String pContent) {content = pContent;}
+
+    public Timestamp getTime() {return time;}
+
+    public void setTime(Timestamp pTime){time = pTime;}
+
+    public Integer getRoomId() {return roomId;}
+
+    public void setRoomId(Integer pRoomId) {roomId = pRoomId;}
 }

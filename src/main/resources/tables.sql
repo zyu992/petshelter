@@ -13,8 +13,8 @@ create table posts (
                        post_id int(16) not null AUTO_INCREMENT,
                        post_by_id int(16) NOT NULL,
                        post_pet_id int(16) NOT NULL,
-                       post_date date not null,
-                       post_is_closed boolean not null default false,
+                       post_date date NOT NULL,
+                       post_is_closed boolean NOT NULL default false,
                        post_adopter_id int(16),
                        primary key (post_id)
 );
@@ -54,8 +54,8 @@ drop table if exists payment_history;
 CREATE TABLE payment_history
 (
     payment_id INT(16) ZEROFILL AUTO_INCREMENT PRIMARY KEY,
-    creditcard INT(16) ZEROFILL NOT NULL,
+    confirmation_number VARCHAR(32) ZEROFILL NOT NULL,
     time       timestamp NOT NULL,
-    amount     INT(16) ZEROFILL NOT NULL,
+    amount     DOUBLE(16,2) ZEROFILL NOT NULL,
     payer_id   INT(16) ZEROFILL NOT NULL
 );
